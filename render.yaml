@@ -1,19 +1,17 @@
 services:
   # Static Site (Free tier available)
-  - type: web
+  - type: static
     name: qr-scanner-web-app
-    runtime: static
     rootDir: web-app
     buildCommand: npm install && npm run build
     staticPublishPath: dist
     envVars:
       - key: NODE_VERSION
         value: 20
-      # Add your Supabase environment variables here
-      # - key: VITE_SUPABASE_URL
-      #   sync: false
-      # - key: VITE_SUPABASE_ANON_KEY
-      #   sync: false
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
     routes:
       - type: rewrite
         source: /*
