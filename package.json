@@ -1,8 +1,11 @@
 {
     "name": "gate-entry-system-root",
     "private": true,
+    "engines": {
+        "node": ">=20"
+    },
     "scripts": {
-        "install": "cd web-app && npm install",
-        "build": "cd web-app && npm run build"
+        "install": "npm install --prefix web-app",
+        "build": "npm run build --prefix web-app"
     }
 }
