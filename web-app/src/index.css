@@ -23,11 +23,24 @@
     }
 
     :root.light {
-        --background: #fafafa;
+        --background: #f8fafc;
         --surface: #ffffff;
-        --primary: #4f46e5;
-        --secondary: #db2777;
-        --text-main: #18181b;
+        --primary: #6366f1;
+        --secondary: #ec4899;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border: rgba(0, 0, 0, 0.05);
+    }
+
+    :root {
+        --background: #09090b;
+        --surface: #18181b;
+        --primary: #6366f1;
+        --secondary: #ec4899;
+        --text-main: #f4f4f5;
+        --text-muted: #a1a1aa;
+        --border: rgba(255, 255, 255, 0.05);
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
     :root.emerald {
@@ -36,6 +49,8 @@
         --primary: #10b981;
         --secondary: #34d399;
         --text-main: #ecfdf5;
+        --text-muted: #6ee7b7;
+        --border: rgba(255, 255, 255, 0.05);
     }
 
     :root.gold {
@@ -44,20 +59,35 @@
         --primary: #d4af37;
         --secondary: #f3e5ab;
         --text-main: #fffdf5;
+        --text-muted: #e5e7eb;
+        --border: rgba(255, 255, 255, 0.1);
     }
 }
 
 body {
-    @apply bg-background text-zinc-100 min-h-screen antialiased;
+    @apply bg-background text-text-main min-h-screen antialiased transition-colors duration-300;
 }
 
 /* Glassmorphism Utilities */
 .glass {
-    @apply bg-zinc-900/70 backdrop-blur-md border border-white/10;
+    @apply backdrop-blur-md border transition-all;
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    border-color: var(--border);
+}
+
+.mirror {
+    transform: scaleX(-1);
 }
 
 .glass-card {
-    @apply bg-surface/50 backdrop-blur-lg border border-white/5 rounded-2xl shadow-xl transition-all duration-300 hover:border-white/10;
+    @apply backdrop-blur-lg border rounded-2xl shadow-xl transition-all duration-300;
+    background: color-mix(in srgb, var(--surface) 50%, transparent);
+    border-color: var(--border);
+}
+
+.glass-card:hover {
+    @apply shadow-2xl;
+    border-color: color-mix(in srgb, var(--text-main) 10%, transparent);
 }
 
 .btn-primary {

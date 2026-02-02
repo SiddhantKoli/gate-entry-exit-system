@@ -24,14 +24,14 @@ export default function Navbar() {
     ] as const;
 
     return (
-        <nav className="glass sticky top-0 z-50 border-b border-white/5">
+        <nav className="glass sticky top-0 z-50 border-b">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-lg shadow-primary/20">
                             <QrCode className="text-white w-5 h-5" />
                         </div>
-                        <span className="font-bold text-xl tracking-tight text-text-main">Gate<span className="text-primary">Keeper</span></span>
+                        <span className="font-bold text-xl tracking-tight">Gate<span className="text-primary">Keeper</span></span>
                     </div>
 
                     <div className="hidden md:flex items-center gap-6">
@@ -57,7 +57,7 @@ export default function Navbar() {
                             })}
                         </div>
 
-                        <div className="flex items-center bg-zinc-900/50 p-1 rounded-xl border border-white/5">
+                        <div className="flex items-center bg-surface/30 p-1 rounded-xl border border-text-main/5">
                             {themes.map((t) => {
                                 const Icon = t.icon;
                                 return (
@@ -97,7 +97,7 @@ export default function Navbar() {
             </div>
 
             {isOpen && (
-                <div className="md:hidden glass border-t border-white/5 absolute w-full">
+                <div className="md:hidden glass border-t absolute w-full shadow-2xl">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         {links.map((link) => {
                             const Icon = link.icon;
@@ -107,14 +107,14 @@ export default function Navbar() {
                                     to={link.path}
                                     onClick={() => setIsOpen(false)}
                                     className={clsx(
-                                        'block px-3 py-2 rounded-md text-base font-medium text-zinc-300 hover:text-white hover:bg-white/10 transition-colors',
-                                        location.pathname === link.path && 'bg-white/10 text-white'
+                                        'block px-4 py-3 rounded-xl text-base font-medium transition-all flex items-center gap-3',
+                                        location.pathname === link.path
+                                            ? 'bg-primary/10 text-primary'
+                                            : 'text-text-main/60 hover:bg-text-main/5'
                                     )}
                                 >
-                                    <div className="flex items-center gap-2">
-                                        <Icon className="w-5 h-5" />
-                                        {link.name}
-                                    </div>
+                                    <Icon className="w-5 h-5" />
+                                    {link.name}
                                 </Link>
                             )
                         })}

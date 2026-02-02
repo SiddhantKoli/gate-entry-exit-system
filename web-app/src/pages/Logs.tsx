@@ -69,7 +69,7 @@ export default function Logs() {
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in">
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-bold bg-gradient-to-r from-text-main to-text-main/50 bg-clip-text text-transparent">
                     Activity Logs
                 </h1>
                 <button className="btn-primary flex items-center gap-2">
@@ -78,11 +78,11 @@ export default function Logs() {
             </div>
 
             <div className="mb-6 relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted w-5 h-5" />
                 <input
                     type="text"
                     placeholder="Search by name or ID..."
-                    className="w-full pl-10 pr-4 py-3 bg-zinc-900/50 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                    className="w-full pl-10 pr-4 py-3 bg-surface/30 border border-text-main/10 rounded-xl text-text-main focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-text-muted"
                     value={searchTerm}
                     onChange={e => setSearchTerm(e.target.value)}
                 />
@@ -91,58 +91,59 @@ export default function Logs() {
             <div className="glass-card overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full">
-                        <thead className="bg-white/5 border-b border-white/5">
+                        <thead className="bg-text-main/5 border-b border-text-main/5">
                             <tr>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">Time</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">Student</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">Action</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">Method</th>
-                                <th className="px-6 py-4 text-left text-xs font-semibold text-zinc-400 uppercase tracking-wider">Duration</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Time</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Student</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Action</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Method</th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-text-muted uppercase tracking-wider">Duration</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-white/5">
+                        <tbody className="divide-y divide-text-main/5">
                             {loading ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-8 text-center text-zinc-500">Loading activity...</td>
+                                    <td colSpan={5} className="px-6 py-8 text-center text-text-muted">Loading activity...</td>
                                 </tr>
                             ) : filteredLogs.length === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-8 text-center text-zinc-500">No activity found</td>
+                                    <td colSpan={5} className="px-6 py-8 text-center text-text-muted">No activity found</td>
                                 </tr>
                             ) : (
                                 filteredLogs.map((log) => {
                                     const isExit = !!log.exit_time;
                                     return (
-                                        <tr key={log.id} className="hover:bg-white/5 transition-colors">
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-400">
+                                        <tr key={log.id} className="hover:bg-text-main/5 transition-colors">
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-text-muted">
                                                 <div className="flex flex-col">
-                                                    <span className="text-white">{format(new Date(log.created_at), 'd MMM, HH:mm')}</span>
-                                                    <span className="text-xs">{format(new Date(log.created_at), 'yyyy')}</span>
+                                                    <span className="text-text-main font-medium">{format(new Date(log.created_at), 'd MMM, HH:mm')}</span>
+                                                    <span className="text-[10px] opacity-60">{format(new Date(log.created_at), 'yyyy')}</span>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex flex-col">
-                                                    <span className="text-sm font-medium text-white">{log.students?.full_name || 'Unknown'}</span>
-                                                    <span className="text-xs text-zinc-500 font-mono">{log.student_id}</span>
+                                                    <span className="text-sm font-semibold text-text-main">{log.students?.full_name || 'Unknown'}</span>
+                                                    <span className="text-xs text-text-muted font-mono">{log.student_id}</span>
                                                 </div>
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className={clsx("inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border",
+                                                <div className={clsx("inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border",
                                                     isExit ? "bg-rose-500/10 text-rose-500 border-rose-500/20" : "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
                                                 )}>
-                                                    <span className={clsx("w-1.5 h-1.5 rounded-full", isExit ? "bg-rose-500" : "bg-emerald-500")}></span>
+                                                    <span className={clsx("w-1.5 h-1.5 rounded-full animate-pulse", isExit ? "bg-rose-500" : "bg-emerald-500")}></span>
                                                     {isExit ? 'Exit' : 'Entry'}
                                                 </div>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-400">
-                                                {log.scan_method}
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-text-muted">
+                                                <span className="bg-text-main/5 px-2 py-0.5 rounded text-xs">
+                                                    {log.scan_method}
+                                                </span>
                                             </td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-zinc-500">
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-text-muted">
                                                 {isExit && log.exit_time ? (
-                                                    // Simple difference calculation could go here
-                                                    format(new Date(log.exit_time), 'HH:mm')
+                                                    <span className="font-medium text-text-main">{format(new Date(log.exit_time), 'HH:mm')}</span>
                                                 ) : (
-                                                    <span className="text-emerald-500/70 italic text-xs">Active</span>
+                                                    <span className="text-emerald-500/70 font-semibold text-xs">Active</span>
                                                 )}
                                             </td>
                                         </tr>

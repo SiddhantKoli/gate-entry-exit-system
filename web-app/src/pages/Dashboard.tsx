@@ -69,7 +69,7 @@ export default function Dashboard() {
 
     const StatCard = ({ title, value, icon: Icon, color, subColor }: any) => (
         <div className="glass-card p-6 relative overflow-hidden group">
-            <div className={`absolute -right-6 -top-6 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity duration-500 scale-150 ${color}`}>
+            <div className={`absolute -right-6 -top-6 p-4 opacity-[0.05] group-hover:opacity-10 transition-opacity duration-500 scale-150 ${color}`}>
                 <Icon className="w-32 h-32" />
             </div>
             <div className="relative z-10">
@@ -77,20 +77,20 @@ export default function Dashboard() {
                     <div className={`p-2.5 rounded-xl bg-gradient-to-br ${subColor} bg-opacity-20 text-white shadow-lg`}>
                         <Icon className="w-5 h-5" />
                     </div>
-                    <h3 className="text-zinc-400 text-sm font-medium tracking-wide uppercase">{title}</h3>
+                    <h3 className="text-text-muted text-xs font-medium tracking-wide uppercase">{title}</h3>
                 </div>
-                <p className="text-5xl font-bold text-white tracking-tight">{loading ? '-' : value}</p>
+                <p className="text-5xl font-bold tracking-tight">{loading ? '-' : value}</p>
             </div>
         </div>
     );
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 animate-fade-in">
-            <div className="flex flex-col gap-2 mb-8">
-                <h1 className="text-3xl font-bold bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+            <div className="flex flex-col gap-2 mb-8 text-left">
+                <h1 className="text-4xl font-bold bg-gradient-to-r from-text-main to-text-main/50 bg-clip-text text-transparent">
                     Dashboard Overview
                 </h1>
-                <p className="text-zinc-500">Real-time gate activity statistics</p>
+                <p className="text-text-muted font-medium">Real-time gate activity statistics</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
