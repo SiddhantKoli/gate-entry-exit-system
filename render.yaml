@@ -1,8 +1,7 @@
 services:
   # Static Site (Free tier available)
-  - type: web
+  - type: static
     name: qr-scanner-web-app
-    env: static
     rootDir: web-app
     buildCommand: npm install && npm run build
     staticPublishPath: dist

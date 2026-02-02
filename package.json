@@ -1,0 +1,8 @@
+{
+    "name": "gate-entry-system-root",
+    "private": true,
+    "scripts": {
+        "install": "cd web-app && npm install",
+        "build": "cd web-app && npm run build"
+    }
+}
